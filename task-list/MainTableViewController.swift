@@ -19,37 +19,43 @@ class MainTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.title = "Task list"
         
         tableView.register(UINib(nibName: "TaskTableCell", bundle: nil), forCellReuseIdentifier: "TaskTableCell")
+        
+        tableView.reloadData()
         
         tableView.estimatedRowHeight = 100.0
         
         tableView.rowHeight = UITableView.automaticDimension
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return myTask.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskTableCell", for: indexPath) as! TaskTableCell
         
         let task = myTask[indexPath.row]
-
-        cell.configureCell(name: task.name,  count: "0")
-
+        cell.configureCell(name: task.name,  count: "Count subtask: \(task.countSubTask())")
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "toSubTask", sender: tableView.cellForRow(at: indexPath))
     }
     
     func showAddTaskForm ()  {
@@ -73,15 +79,16 @@ class MainTableViewController: UITableViewController {
         present(alertController, animated: true  )
     }
     
-
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "toSubTask", let cell = sender as? UITableViewCell {
+        if segue.identifier == "toSubTask", let cell = sender as? TaskTableCell {
+            
             let crtl = segue.destination as! SubTaskTableViewController
             if let indexPath = tableView.indexPath(for: cell) {
                 crtl.configureController(task: myTask[indexPath.row])
             }
         }
     }
-
+    
 }

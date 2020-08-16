@@ -23,7 +23,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="ZzW-or-aYv" kind="show" identifier="toSubTask" id="77h-Qj-Vwv"/>
+                                    <segue destination="ZzW-or-aYv" kind="show" identifier="toSubTask" trigger="accessoryAction" id="Wcj-G0-6Do"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -47,7 +47,7 @@
         <!--Sub Task Table View Controller-->
         <scene sceneID="Rry-YD-cWk">
             <objects>
-                <tableViewController modalPresentationStyle="fullScreen" id="ZzW-or-aYv" customClass="SubTaskTableViewController" customModule="task_list" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SubTaskTableViewController" modalPresentationStyle="fullScreen" id="ZzW-or-aYv" customClass="SubTaskTableViewController" customModule="task_list" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BHs-u1-KK0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -67,7 +67,14 @@
                             <outlet property="delegate" destination="ZzW-or-aYv" id="zkE-fe-s0w"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="rSC-4f-Yf0"/>
+                    <navigationItem key="navigationItem" id="rSC-4f-Yf0">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="k6U-nz-OcV">
+                            <connections>
+                                <action selector="tapAddSubTask:" destination="ZzW-or-aYv" id="fs2-tD-VjK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zc8-f1-s6m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
