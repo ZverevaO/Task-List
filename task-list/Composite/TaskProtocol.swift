@@ -12,6 +12,8 @@ protocol TaskProtocol {
     var name: String { get }
     var description: String { get }
     func addSubTask (task: Task)
+    
+    func countSubTask () -> String
 }
 
 

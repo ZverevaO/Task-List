@@ -23,4 +23,9 @@ class Task: TaskProtocol {
         
         self.subTask.append(task)
     }
+    
+    func countSubTask() -> String {
+        return "\(subTask.count)"
+    }
+    
 }
